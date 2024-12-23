@@ -6,13 +6,13 @@
         public class RequestUserDto
         {
 
-            public int id { get; set; }
+            public int Id { get; set; }
 
-            public string FullName { get; set; }
+            public string Full_Name { get; set; }
 
-            public  int AddressId { get; set; }
+            public  int Address_Id { get; set; }
 
-            public DateTime CreatedDateTime { get; set; }
+            public DateTime Created_Date_Time { get; set; }
 
             public string Cabinet { get; set; }
 
@@ -21,63 +21,63 @@
          public class MyRequestUserDto
        {
 
-            public int id { get; set; }
+            public int Id { get; set; }
 
-            public string FullName { get; set; }
+            public string Full_Name { get; set; }
 
-            public int AddressId { get; set; }
+            public int Address_Id { get; set; }
 
-            public DateTime CreatedDateTime { get; set; }
+            public DateTime Created_Date_Time { get; set; }
 
             public string Cabinet { get; set; }
 
-            public int StatusId { get; set; }
+            public int Status_Id { get; set; }
 
-            public int EmployeeId { get; set; }
+            public int Employee_Id { get; set; }
 
         }
 
         public class RequestDetailsUserDTO
         {
 
-            public int id { get; set; }
+            public int Id { get; set; }
 
-            public int StatusId { get; set; }
+            public int Status_Id { get; set; }
 
-            public int AddressId { get; set; }
+            public int Address_Id { get; set; }
 
             public string Cabinet { get; set; }
 
-            public DateTime CreatedDateTime { get; set; }
+            public DateTime Created_Date_Time { get; set; }
 
-            public string FullName { get; set; }
+            public string Full_Name { get; set; }
 
             public string Description { get; set; }
 
             public string Photo { get; set; }
 
-            public string CommentEmployee { get; set; }
+            public string Comment_Employee { get; set; }
 
         }
 
         public class UpdateDetailsUserDTO
         {
 
-            public int StatusId { get; set; }
+            public int Status_Id { get; set; }
 
-            public int AddressId { get; set; }
+            public int Address_Id { get; set; }
 
             public string Cabinet { get; set; }
 
-            public DateTime CreatedDateTime { get; set; }
+            public DateTime Created_Date_Time { get; set; }
 
-            public string FullName { get; set; }
+            public string Full_Name { get; set; }
 
             public string Description { get; set; }
 
             public string Photo { get; set; }
 
-            public string CommentEmployee { get; set; }
+            public string Comment_Employee { get; set; }
 
         }
 

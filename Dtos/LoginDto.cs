@@ -12,8 +12,7 @@ namespace ApiForMgok.Dtos;
 
 public class ResponeLoginDto()
 {
+
     public string JwtToken { get; set; } //JWT токен выдаваемый после авторизации
-
-
 
 }
