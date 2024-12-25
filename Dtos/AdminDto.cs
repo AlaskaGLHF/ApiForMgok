@@ -3,7 +3,7 @@
     public static class AdminDto
     {
 
-        public class AdminRequestDto
+        public class AdminRequestsDto
         {
 
             public int Id { get; set; }
@@ -18,7 +18,7 @@
 
             public int Status_Id { get; set; }
 
-            public int Employee_Id { get; set; }
+            public required int Employee_Id { get; set; }
 
         }
 
@@ -39,7 +39,7 @@
 
             public int Employee_Id { get; set; }
 
-            public string EmployeeList  { get; set; } //Список сотрудиков для замены(Будет подключён через Include)
+            public string Employee_List  { get; set; } //Список сотрудиков для замены(Будет подключён через Include)
 
         }
 
@@ -111,9 +111,9 @@
         public class AdminAddEmployeeDto
         {
 
-            public string Full_Name { get; set; }
+            public string FullName { get; set; }
 
-            public string Phone_Number { get; set; }
+            public string PhoneNumber { get; set; }
 
             public string Email { get; set; }
 
@@ -123,11 +123,11 @@
 
             public bool Status { get; set; }
 
-            public int Role_Id {get; set; }
+            public int RoleId {get; set; }
 
         }
 
-        public class AdminGetAdressDTO
+        public class AdminGetAllAdressesDTO
         {
 
             public int Id { get; set; }
@@ -152,9 +152,9 @@
 
             public int Id { get; set; }
 
-            public string Full_Name { get; set; }
+            public string FullName { get; set; }
 
-            public string Phone_Number { get; set; }
+            public string PhoneNumber { get; set; }
 
             public string Email { get; set; }
 
@@ -165,9 +165,9 @@
         public class AdminUpdateProfileDto
         {
 
-            public string Full_Name { get; set; }
+            public string FullName { get; set; }
 
-            public string Phone_Number { get; set; }
+            public string PhoneNumber { get; set; }
 
             public string Email { get; set; }
 

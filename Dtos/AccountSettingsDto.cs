@@ -19,9 +19,9 @@
     public class UpdateAccountSettingsDTO 
     {
 
-        string Full_Name { get; set; }
+        string FullName { get; set; }
 
-        string Phone_Number { get; set; }
+        string PhoneNumber { get; set; }
 
         string Email { get; set; }
 
