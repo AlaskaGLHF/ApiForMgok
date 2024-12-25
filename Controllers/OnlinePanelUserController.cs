@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApiForMgok.Controllers;
 
-public class OnlinePanelUserController : Controller
-{
+
     [ApiController]
     [Route("api/[controller]")]
     public class OnlinePanelUser : ControllerBase
@@ -61,4 +60,3 @@ public class OnlinePanelUserController : Controller
         
     }
     
-}

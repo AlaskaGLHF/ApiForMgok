@@ -3,9 +3,6 @@ using ApiForMgok.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiForMgok.Controllers;
-
-public class OnlinePanelAdminController : Controller
-{
     
     [ApiController]
     [Route("api/[controller]")]
@@ -111,4 +108,3 @@ public class OnlinePanelAdminController : Controller
         
     }
     
-}
