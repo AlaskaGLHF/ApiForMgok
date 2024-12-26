@@ -29,6 +29,9 @@ public class OnlinePanelAdmin : ControllerBase
             _errorModel.ServerResponse = ex.Message;
             return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
         }
+
+        return StatusCode(500, _errorModel);
+        
     }
 
     [HttpGet("/online_pannel/admin/requests/{Id}")]
@@ -50,8 +53,8 @@ public class OnlinePanelAdmin : ControllerBase
             return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
         }
 
-        _errorModel.ServerResponse = "Не удалось найти заявку.";
         return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
+        
     }
 
     [HttpPut("/online_pannel/admin/requests/{Id}")]
@@ -75,6 +78,9 @@ public class OnlinePanelAdmin : ControllerBase
             _errorModel.ServerResponse = ex.Message;
             return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
         }
+
+        return StatusCode(500, _errorModel);
+        
     }
 
     [HttpGet("/online_pannel/admin/employees")]
@@ -92,6 +98,9 @@ public class OnlinePanelAdmin : ControllerBase
             _errorModel.ServerResponse = ex.Message;
             return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
         }
+
+        return StatusCode(500, _errorModel);
+        
     }
 
     [HttpGet("/online_pannel/admin/employees/{Id}")]
@@ -113,8 +122,8 @@ public class OnlinePanelAdmin : ControllerBase
             return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
         }
 
-        _errorModel.ServerResponse = "Не удалось найти данные сотрудника.";
         return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
+        
     }
 
     [HttpPut("/online_pannel/admin/employees/{Id}")]
@@ -135,8 +144,8 @@ public class OnlinePanelAdmin : ControllerBase
             return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
         }
 
-        _errorModel.ServerResponse = "Не удалось обновить профиль сотрудника.";
         return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
+        
     }
 
     [HttpPost("/online_pannel/admin/employees/add")]
@@ -157,8 +166,8 @@ public class OnlinePanelAdmin : ControllerBase
             return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
         }
 
-        _errorModel.ServerResponse = "Не удалось добавить сотрудника.";
         return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
+        
     }
 
     [HttpGet("/online_pannel/admin/adresses")]
@@ -176,6 +185,7 @@ public class OnlinePanelAdmin : ControllerBase
             _errorModel.ServerResponse = ex.Message;
             return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
         }
+        return StatusCode(500, _errorModel);
     }
 
     [HttpPost("/online_pannel/admin/adress/add")]
@@ -196,8 +206,8 @@ public class OnlinePanelAdmin : ControllerBase
             return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
         }
 
-        _errorModel.ServerResponse = "Не удалось добавить адрес.";
         return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
+        
     }
 
     [HttpPut("/online_pannel/admin/adresses/{Id}")]
@@ -218,8 +228,8 @@ public class OnlinePanelAdmin : ControllerBase
             return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
         }
 
-        _errorModel.ServerResponse = "Не удалось обновить статус адреса.";
         return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
+        
     }
 
     [HttpGet("/online_pannel/admin_profile/{AdminId}")]
@@ -241,8 +251,8 @@ public class OnlinePanelAdmin : ControllerBase
             return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
         }
 
-        _errorModel.ServerResponse = "Не удалось найти данные администратора.";
         return StatusCode(500, _errorModel);  // В случае ошибки сервер возвращает 500
+        
     }
 
     [HttpPut("/online_pannel/admin_profile/{AdminId}")]
