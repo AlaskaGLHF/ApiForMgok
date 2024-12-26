@@ -1,35 +1,38 @@
 ﻿namespace ApiForMgok.Dtos
 {
-    public class AccountSettingsDTO
+    public static class AccountSettings
     {
-        string FullName { get; set; }
+        public class AccountSettingsDto
+        {
+           public string FullName { get; set; }
 
-        string PhoneNumber { get; set; }
+           public string PhoneNumber { get; set; }
 
-        string Email { get; set; }
+           public string Email { get; set; }
 
-        string Login { get; set; }
+           public string Login { get; set; }
 
-        string Password { get; set; }
+           public string Password { get; set; }
 
-        string Comment { get; set; }
+           public string Comment { get; set; }
 
-    }
+        }
 
-    public class UpdateAccountSettingsDTO 
-    {
+        public class UpdateAccountSettingsDto
+        { 
+            
+            public string FullName { get; set; }
 
-        string FullName { get; set; }
+            public string PhoneNumber { get; set; }
 
-        string PhoneNumber { get; set; }
+            public string Email { get; set; }
 
-        string Email { get; set; }
+            public string Login { get; set; }
 
-        string Login { get; set; }
+            public string Password { get; set; }
 
-        string Password { get; set; }
+            public string Comment { get; set; }
 
-        string Comment { get; set; }
-
+        }
     }
 }

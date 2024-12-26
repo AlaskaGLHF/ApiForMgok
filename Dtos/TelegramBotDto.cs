@@ -3,7 +3,7 @@
     public static class TelegramBotDto
     {
 
-        public class TelegrammBotRequestDTO
+        public class TelegrammBotRequestDto
         {
 
             public int ChatId { get; set; }
@@ -20,7 +20,7 @@
 
         }
 
-        public class TelegrammBotResponseDTO
+        public class TelegrammBotResponseDto
         {
 
             public int Id { get; set; }

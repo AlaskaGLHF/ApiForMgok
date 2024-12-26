@@ -37,7 +37,7 @@
 
         }
 
-        public class RequestDetailsUserDTO
+        public class RequestDetailsUserDto
         {
 
             public int Id { get; set; }
@@ -60,7 +60,7 @@
 
         }
 
-        public class UpdateDetailsUserDTO
+        public class UpdateDetailsUserDto
         {
 
             public int StatusId { get; set; }

@@ -43,7 +43,7 @@ namespace ApiForMgok.Controllers;
         }
         
         [HttpGet("/online_pannel/admin/employees/{Id}")]
-        public async Task<ActionResult<AdminDto.AdminDetailsEmployeeDTO>> GetEmployeeProfileDataById()   // Получить данные профиля сотрудника
+        public async Task<ActionResult<AdminDto.AdminDetailsEmployeeDto>> GetEmployeeProfileDataById()   // Получить данные профиля сотрудника
         {
             
             return null;
@@ -67,7 +67,7 @@ namespace ApiForMgok.Controllers;
         }
         
         [HttpGet("/online_pannel/admin/adresses")]
-        public async Task<ActionResult<List<AdminDto.AdminGetAllAdressesDTO>>> GetAllAdresses()   // Получить все адреса
+        public async Task<ActionResult<List<AdminDto.AdminGetAllAdressesDto>>> GetAllAdresses()   // Получить все адреса
         {
             
             return null;
@@ -99,7 +99,7 @@ namespace ApiForMgok.Controllers;
         }
         
         [HttpPut("/online_pannel/admin_profile/{AdminId}")]
-        public async Task<ActionResult<AdminDto.AdminProfileDto>> UpdateAdminDataById ()   // Обновить данные админа по ID
+        public async Task<ActionResult<AdminDto.AdminUpdateProfileDto>> UpdateAdminDataById ()   // Обновить данные админа по ID
         {
             
             return null;

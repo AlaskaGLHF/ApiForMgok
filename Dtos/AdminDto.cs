@@ -68,7 +68,7 @@
 
         }
 
-        public class AdminDetailsEmployeeDTO
+        public class AdminDetailsEmployeeDto
         {
 
             public int Id { get; set; }
@@ -127,7 +127,7 @@
 
         }
 
-        public class AdminGetAllAdressesDTO
+        public class AdminGetAllAdressesDto
         {
 
             public int Id { get; set; }

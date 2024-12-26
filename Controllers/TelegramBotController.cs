@@ -9,14 +9,14 @@ public class TelegramBotController
 {
     [HttpPost]
     [ActionName("create_request")]
-    public async Task<ActionResult<TelegramBotDto.TelegrammBotRequestDTO>> Create(
-        TelegramBotDto.TelegrammBotResponseDTO createDto)
+    public async Task<ActionResult<TelegramBotDto.TelegrammBotRequestDto>> Create(
+        TelegramBotDto.TelegrammBotResponseDto createDto)
     {
         throw new Exception();
     }
     
     [HttpGet("{ChatId}")]
-    public async Task<ActionResult<TelegramBotDto.TelegrammBotResponseDTO>> GetById (int ChatId)
+    public async Task<ActionResult<TelegramBotDto.TelegrammBotResponseDto>> GetById (int ChatId)
     {
         throw new Exception();
     } 

@@ -19,7 +19,7 @@ namespace ApiForMgok.Controllers;
         }
         
         [HttpGet("/online_pannel/user/requests/{Id}")]
-        public async Task<ActionResult<UserDto.RequestDetailsUserDTO>> GetRequestById()   //  Получить детали заявки
+        public async Task<ActionResult<UserDto.RequestDetailsUserDto>> GetRequestById()   //  Получить детали заявки
         {
             
             return null;
@@ -27,7 +27,7 @@ namespace ApiForMgok.Controllers;
         }
         
         [HttpPut("/online_pannel/user/requests/{Id}")]
-        public async Task<ActionResult<UserDto.UpdateDetailsUserDTO>> AcceptRequestById()     //  Принять заявку и оставить комментарий
+        public async Task<ActionResult<UserDto.UpdateDetailsUserDto>> AcceptRequestById()     //  Принять заявку и оставить комментарий
         {
             
             return null;
@@ -43,7 +43,7 @@ namespace ApiForMgok.Controllers;
         }
         
         [HttpGet("/online_pannel/user_profile/{UserId}/")]
-        public async Task<ActionResult<AccountSettingsDTO>> GetEmployeeDetailsById()   // Получить ДАННЫЕ сотрудника по id
+        public async Task<ActionResult<AccountSettings.AccountSettingsDto>> GetEmployeeDetailsById()   // Получить ДАННЫЕ сотрудника по id
         {
             
             return null;
@@ -51,7 +51,7 @@ namespace ApiForMgok.Controllers;
         }
         
         [HttpPut("/online_pannel/user_profile/{UserId}/")]
-        public async Task<ActionResult<UpdateAccountSettingsDTO>> UpdateEmployeeDataById()   // Обновить данные в профиле сотрудника
+        public async Task<ActionResult<AccountSettings.UpdateAccountSettingsDto>> UpdateEmployeeDataById()   // Обновить данные в профиле сотрудника
         {
             
             return null;
