@@ -68,7 +68,7 @@ namespace ApiForMgok.Controllers
                 if (updateDetailsUserDto != null)  // Проверка, что данные для обновления не пустые
                 {
                     // Пример успешного ответа
-                    return Ok();
+                    return Ok("Заявка успешно поменяла статус или добавлен комментарий");
 
                 }
             }
@@ -84,11 +84,11 @@ namespace ApiForMgok.Controllers
         [HttpGet("/online_pannel/user/my_requests/{UserId}")]
         [ProducesResponseType(typeof(List<UserDto.MyRequestUserDto>), 200)] // Пример для успешного ответа (200)
         [ProducesResponseType(typeof(ErrorModelDto), 500)] // Пример для ошибки (500)
-        public async Task<ActionResult<List<UserDto.MyRequestUserDto>>> GetAllEmployeesRequestsById(int id)    // Получить ЗАЯВКИ сотрудника по id
+        public async Task<ActionResult<List<UserDto.MyRequestUserDto>>> GetAllEmployeesRequestsById(int UserId)    // Получить ЗАЯВКИ сотрудника по id
         {
             try
             {
-                if (id > 0)  // Проверка, что ID больше 0
+                if (UserId > 0)  // Проверка, что ID больше 0
                 {
                   
                     return Ok();
@@ -107,11 +107,11 @@ namespace ApiForMgok.Controllers
         [HttpGet("/online_pannel/user_profile/{UserId}/")]
         [ProducesResponseType(typeof(AccountSettings.AccountSettingsDto), 200)] // Пример для успешного ответа (200)
         [ProducesResponseType(typeof(ErrorModelDto), 500)] // Пример для ошибки (500)
-        public async Task<ActionResult<AccountSettings.AccountSettingsDto>> GetEmployeeDetailsById(int id)   // Получить ДАННЫЕ сотрудника по id
+        public async Task<ActionResult<AccountSettings.AccountSettingsDto>> GetEmployeeDetailsById(int UserId)   // Получить ДАННЫЕ сотрудника по id
         {
             try
             {
-                if (id > 0)  // Проверка, что ID больше 0
+                if (UserId > 0)  // Проверка, что ID больше 0
                 {
                     
                     return Ok();
