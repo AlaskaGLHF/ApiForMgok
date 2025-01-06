@@ -1,5 +1,6 @@
 ﻿using ApiForMgok.Interfaces.Repository;
 using ApiForMgok.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiForMgok.Repository
 {
@@ -12,16 +13,16 @@ namespace ApiForMgok.Repository
             _context = context;
         }
 
-        public async Task<Request> Create(Request request)
+        public async Task<Request> CreateRequestAsync(Request request)
         {
             _context.Requests.Add(request);
             await _context.SaveChangesAsync();
             return request;
         }
 
-        public async Task<Request> GetByChatId(int chatId)
+        public async Task<List<Request>> GetRequestByChatId(int chatId)
         {
-            return await _context.Requests.FindAsync(chatId);
+            return await _context.Requests.Where(c => c.ChatId == chatId).ToListAsync();
         }
     }
 }
