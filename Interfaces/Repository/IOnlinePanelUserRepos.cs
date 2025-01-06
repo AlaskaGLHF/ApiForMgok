@@ -4,7 +4,7 @@ namespace ApiForMgok.Interfaces.Repository
 {
     public interface IOnlinePanelUserRepos
     {
-        Task<List<Request>> GetAllAsync();
+        Task<List<Request>> GetAllRequestsAsync();
         Task<Request> GetRequestByIdAsync(int id);
         Task<Request> UpdateRequestAsync(Request request);
         Task<Request> GetRequestByUserIdAsync (int userId);

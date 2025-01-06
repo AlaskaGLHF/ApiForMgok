@@ -13,7 +13,7 @@ namespace ApiForMgok.Repository
             _context = context;
         }
 
-        public async Task<List<Request>> GetAllAsync()
+        public async Task<List<Request>> GetAllRequestsAsync()
         {
             return await _context.Requests.ToListAsync();
         }
