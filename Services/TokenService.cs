@@ -4,17 +4,20 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using ApiForMgok.Models;
-using System;
+using Microsoft.Extensions.Configuration;
 using System.Linq;
 
 public class TokenService : ITokenService
 {
     private readonly IConfiguration _config;
     private readonly SymmetricSecurityKey _key;
+    private readonly ApiForMgokContext _context;
 
-    public TokenService(IConfiguration config)
+    // Внедряем ApiForMgokContext через конструктор
+    public TokenService(IConfiguration config, ApiForMgokContext context)
     {
         _config = config;
+        _context = context;
 
         var signinKey = _config["JWT:SigninKey"];
         if (string.IsNullOrEmpty(signinKey))
@@ -27,23 +30,17 @@ public class TokenService : ITokenService
 
     public string CreateToken(Employee employee)
     {
-        string roleName;
-
-        using (var context = new ApiForMgokContext())
-        {
-            // Получаем имя роли из базы данных
-            roleName = context.Roles
-                .Where(role => role.Id == employee.RoleId)
-                .Select(role => role.Name)
-                .FirstOrDefault();
-        }
+        string roleName = _context.Roles
+            .Where(role => role.Id == employee.RoleId)
+            .Select(role => role.Name)
+            .FirstOrDefault() ?? "User";  // "User" используется как значение по умолчанию
 
         // Создаем список claim
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Email, employee.Email),
             new Claim(ClaimTypes.GivenName, employee.FullName),
-            new Claim(ClaimTypes.Role, roleName ?? "User") // "User" используется как значение по умолчанию
+            new Claim(ClaimTypes.Role, roleName)
         };
 
         var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512);
