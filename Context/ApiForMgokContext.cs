@@ -91,6 +91,7 @@ public partial class ApiForMgokContext : DbContext
                 .HasColumnName("cabinet");
             entity.Property(e => e.ChatId).HasColumnName("chat_id");
             entity.Property(e => e.CreatedDateTime)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("created_date_time");
             entity.Property(e => e.Description)

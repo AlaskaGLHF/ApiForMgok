@@ -1,4 +1,5 @@
 ﻿using ApiForMgok.Dtos;
+using ApiForMgok.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiForMgok.Controllers;
@@ -12,29 +13,24 @@ public class TelegramBotController : ControllerBase
         serverResponse: "Неизвестная ошибка."
     );
 
+    private readonly ITelegramBotService _telegramBotService;
+
+    public TelegramBotController(ITelegramBotService telegramBotService)
+    {
+        _telegramBotService = telegramBotService;
+    }
+
     [HttpPost]
     [ActionName("create_request")]
     [ProducesResponseType(typeof(ErrorModelDto), 500)]
-    [ProducesResponseType(typeof(TelegramBotDto.TelegrammBotRequestDto), 200)]
-    public async Task<ActionResult<TelegramBotDto.TelegrammBotRequestDto>> Create(
-        [FromBody] TelegramBotDto.TelegrammBotResponseDto createDto)
+    [ProducesResponseType(typeof(TelegramBotDto.TelegramBotRequestDto), 200)]
+    public async Task<ActionResult<TelegramBotDto.TelegramBotRequestDto>> Create(
+        [FromBody] TelegramBotDto.TelegramBotRequestDto telegramBotDto)
     {
         try
         {
-            if (createDto == null)
-            {
-                _errorModel.ServerResponse = "Переданы некорректные данные для создания запроса.";
-                return BadRequest(_errorModel); // Возврат 400 для некорректных данных
-            }
-
-            var createdRequest = new TelegramBotDto.TelegrammBotRequestDto
-            {
-                // Заполните пример данных запроса здесь
-                ChatId = createDto.ChatId,
-                
-            };
-
-            return Ok("Заявка успешно созданна"); // Успешный ответ
+            var createRequest = await _telegramBotService.CreateRequestAsync(telegramBotDto);
+            return Ok(createRequest); // Успешный возврат данных
         }
         catch (Exception ex)
         {
@@ -43,32 +39,27 @@ public class TelegramBotController : ControllerBase
         }
     }
 
-    [HttpGet("{ChatId}")]
+    [HttpGet("{chatId}")]
     [ProducesResponseType(typeof(ErrorModelDto), 500)]
-    [ProducesResponseType(typeof(TelegramBotDto.TelegrammBotResponseDto), 200)]
-    public async Task<ActionResult<TelegramBotDto.TelegrammBotResponseDto>> GetById(int ChatId)
+    [ProducesResponseType(typeof(TelegramBotDto.TelegramBotResponseDto), 200)]
+    public async Task<ActionResult<TelegramBotDto.TelegramBotResponseDto>> GetById(int chatId)
     {
         try
         {
-            if (ChatId <= 0)
-            {
-                _errorModel.ServerResponse = "Передан некорректный идентификатор чата.";
-                return BadRequest(_errorModel); // Возврат 400 для некорректного ID
-            }
 
-            var response = new TelegramBotDto.TelegrammBotResponseDto
-            {
-                // Заполните пример данных ответа здесь
-                ChatId = ChatId,
-                
-            };
+            var requests = await _telegramBotService.GetRequestAsync(chatId);
+            
+            if (requests == null) return NotFound(_errorModel);
+            
+            return Ok(requests);
 
-            return Ok("Заявки пользователя успешно найдены"); // Успешный ответ
         }
         catch (Exception ex)
         {
             _errorModel.ServerResponse = ex.Message;
             return StatusCode(500, _errorModel); // Возврат ошибки сервера
         }
+    
     }
-}
+    }
+

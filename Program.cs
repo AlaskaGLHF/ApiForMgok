@@ -1,11 +1,13 @@
 using ApiForMgok.Interfaces;
 using ApiForMgok.Interfaces.Repository;
+using ApiForMgok.Interfaces.Service;
 using ApiForMgok.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.DependencyInjection;
 using ApiForMgok.Models;
+using ApiForMgok.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,14 +16,14 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApiForMgokContext>(options =>
     options.UseNpgsql(connectionString));
 
-// Добавление контроллеров
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 builder.Services.AddControllers();
 
-// Конфигурация Swagger/OpenAPI
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Конфигурация аутентификации через JWT
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ JWT
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme =
@@ -45,7 +47,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// Добавление авторизаций для ролей
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("User", policy =>
@@ -54,15 +56,17 @@ builder.Services.AddAuthorization(options =>
         policy.RequireRole("Admin"));
 });
 
-// Добавление сервисов
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 builder.Services.AddScoped<IJointRepos, JointRepos>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<ITelegramBotRepos, TelegramBotRepos>();
+builder.Services.AddScoped<ITelegramBotService, TelegramBotService>();
 
 builder.Services.AddLogging();
 
 var app = builder.Build();
 
-// Конфигурация HTTP-пайплайна
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -71,12 +75,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Аутентификация и авторизация
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Настройка маршрутов контроллеров
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 app.MapControllers();
 
-// Запуск приложения
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 app.Run();
