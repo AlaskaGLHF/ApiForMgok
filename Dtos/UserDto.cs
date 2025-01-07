@@ -31,9 +31,9 @@
 
             public string Cabinet { get; set; }
 
-            public int StatusId { get; set; }
+            public int? StatusId { get; set; }
 
-            public int EmployeeId { get; set; }
+            public int? EmployeeId { get; set; }
 
         }
 
@@ -42,7 +42,7 @@
 
             public int Id { get; set; }
 
-            public int StatusId { get; set; }
+            public int? StatusId { get; set; }
 
             public int AddressId { get; set; }
 
@@ -63,7 +63,7 @@
         public class UpdateDetailsUserDto
         {
 
-            public int StatusId { get; set; }
+            public int? StatusId { get; set; }
 
             public int AddressId { get; set; }
 

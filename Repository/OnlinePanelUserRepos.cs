@@ -47,5 +47,13 @@ namespace ApiForMgok.Repository
             await _context.SaveChangesAsync();
             return request;
         }
+        
+        public async Task<List<Request>> GetAllRequestsByEmployeeId(int userId)
+        {
+            return await _context.Requests
+                .Where(c => c.EmployeeId == userId)
+                .ToListAsync();
+        }
+
     }
 }
