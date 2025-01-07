@@ -65,6 +65,20 @@ namespace ApiForMgok.Services
             await _onlinePanelAdminRepos.CreateEmployeeAsync(employee);
         }
 
+        public async Task<AdminDto.AdminProfileDto> GetAdminProfileByIdAsync(int id)
+        {
+            var admin = await _onlinePanelAdminRepos.GetEmployeeByIdAsync(id);
+            if (admin == null) return null;
+            return new AdminDto.AdminProfileDto
+            {
+                Id = admin.Id,
+                FullName = admin.FullName,
+                PhoneNumber = admin.PhoneNumber,
+                Email = admin.Email,
+                Comment = admin.Comment
+            };
+        }
+
         public async Task<List<AdminDto.AdminGetAllAdressesDto>> GetAllAdressesAsync()
         {
             var addresses = await _onlinePanelAdminRepos.GetAllAddressesAsync();
@@ -157,6 +171,19 @@ namespace ApiForMgok.Services
             await _onlinePanelAdminRepos.UpdateAddressAsync(address);
         }
 
+        public async Task UpdateAdminProfileAsync(AdminDto.AdminUpdateProfileDto adminUpdateProfileDto, int id)
+        {
+            var admin = await _onlinePanelAdminRepos.GetEmployeeByIdAsync(id);
+            if(admin == null) return;
+
+            admin.FullName = adminUpdateProfileDto.FullName;
+            admin.PhoneNumber = adminUpdateProfileDto.PhoneNumber;
+            admin.Email = adminUpdateProfileDto.Email;
+            admin.Comment = adminUpdateProfileDto.Comment;
+
+            await _onlinePanelAdminRepos.UpdateEmployeeAsync(admin);
+        }
+
         public async Task UpdateEmployeeByIdAsync(AdminDto.AdminUpdateEmployeeDto updateEmployeeDto, int id)
         {
             var employee = await _onlinePanelAdminRepos.GetEmployeeByIdAsync(id);
@@ -172,5 +199,6 @@ namespace ApiForMgok.Services
 
             await _onlinePanelAdminRepos.UpdateEmployeeAsync(employee);
         }
+
     }
 }

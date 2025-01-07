@@ -14,6 +14,8 @@ namespace ApiForMgok.Interfaces.Service
         Task<List<AdminDto.AdminGetAllAdressesDto>> GetAllAdressesAsync();
         Task CreateAddressAsync(AdminDto.AdminCreateAdressDto createAdressDto);
         Task UpdateAddressAsync(AdminDto.AdminCreateAdressDto updateAdressDto, int id);
+        Task<AdminDto.AdminProfileDto> GetAdminProfileByIdAsync(int id);
+        Task UpdateAdminProfileAsync(AdminDto.AdminUpdateProfileDto adminUpdateProfileDto, int id);
 
     }
 }
