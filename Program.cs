@@ -61,6 +61,8 @@ builder.Services.AddScoped<IJointRepos, JointRepos>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ITelegramBotRepos, TelegramBotRepos>();
 builder.Services.AddScoped<ITelegramBotService, TelegramBotService>();
+builder.Services.AddScoped<IOnlinePanelUserRepos, OnlinePanelUserRepos>();
+builder.Services.AddScoped<IOnlinePanelUserService, OnlinePanelUserService>();
 
 builder.Services.AddLogging();
 

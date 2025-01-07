@@ -19,7 +19,7 @@ public partial class ApiForMgokContext : DbContext
 
     public virtual DbSet<Employee> Employees { get; set; }
 
-    public virtual DbSet<Request> Requests { get; set; }
+    public virtual DbSet<Request?> Requests { get; set; }
 
     public virtual DbSet<RequestStatus> RequestStatuses { get; set; }
 
