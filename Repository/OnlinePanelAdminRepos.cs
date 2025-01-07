@@ -28,6 +28,11 @@ namespace ApiForMgok.Repository
             return newEmployee;
         }
 
+        public async Task<Address> GetAddressByIdAsync(int id)
+        {
+            return await _context.Addresses.FindAsync(id);
+        }
+
         public async Task<List<Address>> GetAllAddressesAsync()
         {
             return await _context.Addresses.ToListAsync();

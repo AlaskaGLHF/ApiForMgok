@@ -1,4 +1,6 @@
-﻿namespace ApiForMgok.Dtos
+﻿using ApiForMgok.Models;
+
+namespace ApiForMgok.Dtos
 {
     public static class AdminDto
     {
@@ -12,13 +14,13 @@
 
             public int Address_Id { get; set; }
 
-            public string Created_Date_Time { get; set; }
+            public DateTime Created_Date_Time { get; set; }
 
             public string Cabinet { get; set; }
 
-            public int Status_Id { get; set; }
+            public int? Status_Id { get; set; }
 
-            public required int Employee_Id { get; set; }
+            public required int? Employee_Id { get; set; }
 
         }
 
@@ -27,19 +29,19 @@
 
             public int Id{ get; set; }
 
-            public int Status_Id { get; set; }
+            public int? Status_Id { get; set; }
 
             public int Address_Id { get; set; }
 
             public string Cabinet { get; set; }
 
-            public string Created_Date_Time { get; set; }
+            public DateTime Created_Date_Time { get; set; }
 
             public string Full_Name { get; set; }
 
-            public int Employee_Id { get; set; }
+            public int? Employee_Id { get; set; }
 
-            public string Employee_List  { get; set; } //Список сотрудиков для замены(Будет подключён через Include)
+            public List<Employee> Employee_List  { get; set; } //Список сотрудиков для замены(Будет подключён через Include)
 
         }
 
@@ -52,7 +54,7 @@
 
             public string Cabinet { get; set; }
 
-            public string Created_Date_Time { get; set; }
+            public DateTime Created_Date_Time { get; set; }
 
             public string Full_Name { get; set; }
 
@@ -134,7 +136,7 @@
 
             public string Address { get; set; }
 
-            public bool Status { get; set; }
+            public bool? Status { get; set; }
 
         }
 
