@@ -64,6 +64,8 @@ builder.Services.AddScoped<ITelegramBotService, TelegramBotService>();
 builder.Services.AddScoped<IOnlinePanelUserRepos, OnlinePanelUserRepos>();
 builder.Services.AddScoped<IOnlinePanelUserService, OnlinePanelUserService>();
 
+builder.Services.AddScoped<IOnlinePanelAdminRepos, OnlinePanelAdminRepos>();
+builder.Services.AddScoped<IOnlinePanelAdminService, OnlinePanelAdminService>();
 builder.Services.AddLogging();
 
 var app = builder.Build();

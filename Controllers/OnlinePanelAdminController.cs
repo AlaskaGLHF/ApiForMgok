@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using ApiForMgok.Dtos;
+using ApiForMgok.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiForMgok.Controllers;
@@ -8,10 +9,16 @@ namespace ApiForMgok.Controllers;
 [Route("api/[controller]")]
 public class OnlinePanelAdmin : ControllerBase
 {
+    private readonly IOnlinePanelAdminService _onlinePanelAdminService;
     private readonly ErrorModelDto _errorModel = new ErrorModelDto(
         userResponse: "Произошла ошибка на сервере.",
         serverResponse: "Неизвестная ошибка."
     );
+
+    public OnlinePanelAdmin(IOnlinePanelAdminService onlinePanelAdminService)
+    {
+        _onlinePanelAdminService = onlinePanelAdminService;
+    }
 
     [HttpGet("/online_pannel/admin/requests")]
     [ProducesResponseType(typeof(ErrorModelDto), 500)]
@@ -20,9 +27,9 @@ public class OnlinePanelAdmin : ControllerBase
     {
         try
         {
-            // Пример успешного ответа с кодом 200
-            var requests = new List<AdminDto.AdminRequestsDto>(); // Здесь должен быть список заявок
-            return Ok(requests); // Возврат успешного ответа
+            //Получение всех заявок
+            var requests = await _onlinePanelAdminService.GetAllRequestAsync();
+            return Ok(requests);
         }
         catch (Exception ex)
         {
@@ -43,7 +50,8 @@ public class OnlinePanelAdmin : ControllerBase
         {
             if (id > 0) // Проверка, что ID больше 0
             {
-                var requestDetails = new AdminDto.AdminDetailRequestDto(); // Здесь должны быть детали заявки
+                var requestDetails = await _onlinePanelAdminService.GetDetailsRequestByIdAsync(id);
+                if (requestDetails == null) return NotFound(_errorModel);
                 return Ok(requestDetails); // Возврат успешного ответа с кодом 200
             }
         }
@@ -70,7 +78,7 @@ public class OnlinePanelAdmin : ControllerBase
             {
                 return BadRequest(_errorModel); // Возврат 400 для некорректных данных
             }
-            // Пример успешного обновления
+            await _onlinePanelAdminService.ChangeResponsibleEmployeeAsync(adminNewResponsibleEmployeeRequestDto, id);
             return Ok("Ответственный за заявку успешно изменён");
         }
         catch (Exception ex)
@@ -90,7 +98,7 @@ public class OnlinePanelAdmin : ControllerBase
     {
         try
         {
-            var employees = new List<AdminDto.AdminGetAllEmployeesDto>(); // Список сотрудников
+            var employees = await _onlinePanelAdminService.GetAllEmployeesAsync(); // Список сотрудников
             return Ok(employees); // Возврат успешного ответа
         }
         catch (Exception ex)
@@ -112,7 +120,8 @@ public class OnlinePanelAdmin : ControllerBase
         {
             if (id > 0)  // Проверка, что ID больше 0
             {
-                var employeeData = new AdminDto.AdminDetailsEmployeeDto(); // Данные сотрудника
+                var employeeData = await _onlinePanelAdminService.GetDetailsEmployeeByIdAsync(id); // Данные сотрудника
+                if (employeeData == null) return NotFound(_errorModel);
                 return Ok(employeeData); // Возврат успешного ответа
             }
         }
@@ -133,10 +142,12 @@ public class OnlinePanelAdmin : ControllerBase
     {
         try
         {
-            if (adminUpdateEmployeeDto != null)  // Проверка, что данные для обновления не пустые
+            if (adminUpdateEmployeeDto == null)  // Проверка, что данные для обновления не пустые
             {
-                return Ok("Профиль сотрудника успешно обновлён");
+                return BadRequest(_errorModel);
             }
+            await _onlinePanelAdminService.UpdateEmployeeByIdAsync(adminUpdateEmployeeDto, id);
+            return Ok("Профиль сотрудника успешно обновлён");
         }
         catch (Exception ex)
         {
@@ -155,10 +166,12 @@ public class OnlinePanelAdmin : ControllerBase
     {
         try
         {
-            if (adminAddEmployeeDto != null)  // Проверка, что данные для создания сотрудника не пустые
+            if (adminAddEmployeeDto == null)  // Проверка, что данные для создания сотрудника не пустые
             {
-                return Ok("Сотрудник успешно добавлен");
+                return BadRequest(_errorModel);
             }
+            await _onlinePanelAdminService.CreateEmployeeAsync(adminAddEmployeeDto);
+            return Ok("Сотрудник успешно добавлен");
         }
         catch (Exception ex)
         {
@@ -177,7 +190,7 @@ public class OnlinePanelAdmin : ControllerBase
     {
         try
         {
-            var addresses = new List<AdminDto.AdminGetAllAdressesDto>(); // Список адресов
+            var addresses = await _onlinePanelAdminService.GetAllAdressesAsync(); // Список адресов
             return Ok(addresses); // Возврат успешного ответа
         }
         catch (Exception ex)
@@ -195,10 +208,12 @@ public class OnlinePanelAdmin : ControllerBase
     {
         try
         {
-            if (adminCreateAdressDto != null)  // Проверка, что данные для добавления адреса не пустые
+            if (adminCreateAdressDto == null)  // Проверка, что данные для добавления адреса не пустые
             {
-                return Ok("Адрес успешно добавлен");
+                return BadRequest(_errorModel);
             }
+            await _onlinePanelAdminService.CreateAddressAsync(adminCreateAdressDto);
+            return Ok("Адрес успешно добавлен");
         }
         catch (Exception ex)
         {
@@ -217,10 +232,12 @@ public class OnlinePanelAdmin : ControllerBase
     {
         try
         {
-            if (adminCreateAdressDto != null)  // Проверка, что данные для обновления статуса не пустые
+            if (adminCreateAdressDto == null)  // Проверка, что данные для обновления статуса не пустые
             {
-                return Ok("Статус адреса успешно обновлён");
+                return BadRequest(_errorModel);
             }
+            await _onlinePanelAdminService.UpdateAddressAsync(adminCreateAdressDto, id);
+            return Ok("Статус адреса успешно обновлён");
         }
         catch (Exception ex)
         {
@@ -241,7 +258,8 @@ public class OnlinePanelAdmin : ControllerBase
         {
             if (id > 0)  // Проверка, что ID больше 0
             {
-                var adminData = new AdminDto.AdminProfileDto(); // Данные администратора
+                var adminData = await _onlinePanelAdminService.GetAdminProfileByIdAsync(id);    // Данные администратора
+                if (adminData == null) return NotFound(_errorModel);
                 return Ok(adminData); // Возврат успешного ответа
             }
         }
@@ -262,10 +280,12 @@ public class OnlinePanelAdmin : ControllerBase
     {
         try
         {
-            if (adminUpdateProfileDto != null)  // Проверка, что данные для обновления не пустые
+            if (adminUpdateProfileDto == null)  // Проверка, что данные для обновления не пустые
             {
-                return Ok("Данные администратора успешно обновлены");
+                return BadRequest(_errorModel);
             }
+            await _onlinePanelAdminService.UpdateAdminProfileAsync(adminUpdateProfileDto, id);
+            return Ok("Данные администратора успешно обновлены");
         }
         catch (Exception ex)
         {
