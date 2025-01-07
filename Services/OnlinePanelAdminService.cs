@@ -14,7 +14,6 @@ namespace ApiForMgok.Services
             _onlinePanelAdminRepos = onlinePanelAdminRepos;
         }
 
-        //Уточняется по поводу DTO
         public async Task<AdminDto.AdminNewResponsibleEmployeeRequestDto> ChangeResponsibleEmployeeAsync(AdminDto.AdminNewResponsibleEmployeeRequestDto responsibleEmployee, int id)
         {
             var request = await _onlinePanelAdminRepos.GetRequestByIdAsync(id);

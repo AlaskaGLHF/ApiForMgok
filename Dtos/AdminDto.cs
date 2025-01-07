@@ -48,7 +48,7 @@ namespace ApiForMgok.Dtos
         public class AdminNewResponsibleEmployeeRequestDto
         {
 
-            public int Status_Id { get; set; }
+            public int? Status_Id { get; set; }
 
             public int Address_Id { get; set; }
 
@@ -58,7 +58,7 @@ namespace ApiForMgok.Dtos
 
             public string Full_Name { get; set; }
 
-            public int Employee_Id { get; set; }
+            public int? Employee_Id { get; set; }
         }
 
         public class  AdminGetAllEmployeesDto
