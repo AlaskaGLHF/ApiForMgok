@@ -1,10 +1,12 @@
 ﻿using ApiForMgok.Dtos;
 using ApiForMgok.Interfaces.Repository;
 using System.Linq;
+using ApiForMgok.Interfaces.Service;
+using ApiForMgok.Models;
 
 namespace ApiForMgok.Services
 {
-    public class OnlinePanelUserService
+    public class OnlinePanelUserService : IOnlinePanelUserService
     {
         
         private readonly IOnlinePanelUserRepos _onlinePanelUserRepos;
@@ -83,13 +85,16 @@ namespace ApiForMgok.Services
         // Получение всех запросов для конкретного пользователя
         public async Task<List<UserDto.MyRequestUserDto>> GetAllMyRequestsAsync(int userId)
         {
-            // Получаем все заявки для сотрудника
-            var requests = await _onlinePanelUserRepos.GetAllRequestsAsync();
+            // Получаем заявки для сотрудника с указанным userId, используя метод репозитория
+            var requests = await _onlinePanelUserRepos.GetRequestsByEmployeeIdAsync(userId);
 
             // Если заявок нет, выбрасываем исключение
-            if (requests == null || !requests.Any()) throw new NullReferenceException("Не существует заявок по данному id");
+            if (requests == null || !requests.Any())
+            {
+                throw new NullReferenceException("Заявки для данного сотрудника не найдены");
+            }
 
-            // Преобразуем список заявок в список DTO
+            // Преобразуем список заявок в список DTO и возвращаем
             return requests.Select(request => new UserDto.MyRequestUserDto
             {
                 Id = request.Id,
@@ -103,7 +108,7 @@ namespace ApiForMgok.Services
         }
 
 
-
+        
         // Получение данных сотрудника по ID
         public async Task<AccountSettings.AccountSettingsDto> GetEmployeeDataById(int userId)
         {

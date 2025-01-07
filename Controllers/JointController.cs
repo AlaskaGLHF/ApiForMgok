@@ -14,6 +14,8 @@ public class JointController : ControllerBase
     private readonly ITokenService _tokenService;
     private readonly ErrorModelDto _errorModel;
 
+    
+    
     public JointController(IJointRepos jointRepos, ITokenService tokenService)
     {
         _jointRepos = jointRepos;
