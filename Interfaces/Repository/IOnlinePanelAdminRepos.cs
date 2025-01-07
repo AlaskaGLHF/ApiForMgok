@@ -15,7 +15,7 @@ namespace ApiForMgok.Interfaces.Repository
         Task<Employee> CreateEmployeeAsync(Employee newEmployee);
         Task<List<Address>> GetAllAddressesAsync();
         Task<Address> GetAddressByIdAsync(int id);
-        Task<Address> CreateAddressAsync(Address newaddress);
+        Task CreateAddressAsync(Address newaddress);
         Task<Address> UpdateAddressAsync(Address address);
 
     }

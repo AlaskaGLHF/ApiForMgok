@@ -136,7 +136,6 @@ namespace ApiForMgok.Services
             };
 
         }
-        //Нужно зарефакторить
         public async Task<AdminDto.AdminDetailRequestDto> GetDetailsRequestByIdAsync(int id)
         {
             var request = await _onlinePanelAdminRepos.GetRequestByIdAsync(id);
@@ -154,7 +153,6 @@ namespace ApiForMgok.Services
                 Created_Date_Time = request.CreatedDateTime,
                 Full_Name = request.FullName,
                 Employee_Id = request.EmployeeId,
-                //Пееределать под Include (Нужны поля ID и Имя) 
                 Employee_List = employees,
             };
 

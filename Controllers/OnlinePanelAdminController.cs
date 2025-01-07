@@ -41,7 +41,7 @@ public class OnlinePanelAdmin : ControllerBase
         
     }
 
-    [HttpGet("/online_pannel/admin/requests/{Id}")]
+    [HttpGet("/online_pannel/admin/requests/{id}")]
     [ProducesResponseType(typeof(ErrorModelDto), 500)]
     [ProducesResponseType(typeof(AdminDto.AdminDetailRequestDto), 200)]
     public async Task<ActionResult<AdminDto.AdminDetailRequestDto>> GetDetailsOfRequestsById(int id)    // Получить детали заявки
@@ -65,7 +65,7 @@ public class OnlinePanelAdmin : ControllerBase
         
     }
 
-    [HttpPut("/online_pannel/admin/requests/{Id}")]
+    [HttpPut("/online_pannel/admin/requests/{id}")]
     [ProducesResponseType(typeof(ErrorModelDto), 500)]
     [ProducesResponseType(typeof(AdminDto.AdminNewResponsibleEmployeeRequestDto), 200)]
     public async Task<ActionResult<AdminDto.AdminNewResponsibleEmployeeRequestDto>> ChangeResponsibleEmployeeById(
@@ -111,7 +111,7 @@ public class OnlinePanelAdmin : ControllerBase
         
     }
 
-    [HttpGet("/online_pannel/admin/employees/{Id}")]
+    [HttpGet("/online_pannel/admin/employees/{id}")]
     [ProducesResponseType(typeof(ErrorModelDto), 500)]
     [ProducesResponseType(typeof(AdminDto.AdminDetailsEmployeeDto), 200)]
     public async Task<ActionResult<AdminDto.AdminDetailsEmployeeDto>> GetEmployeeProfileDataById(int id)   // Получить данные профиля сотрудника
@@ -135,7 +135,7 @@ public class OnlinePanelAdmin : ControllerBase
         
     }
 
-    [HttpPut("/online_pannel/admin/employees/{Id}")]
+    [HttpPut("/online_pannel/admin/employees/{id}")]
     [ProducesResponseType(typeof(ErrorModelDto), 500)]
     [ProducesResponseType(typeof(AdminDto.AdminUpdateEmployeeDto), 200)]
     public async Task<ActionResult<AdminDto.AdminUpdateEmployeeDto>> UpdateEmployeeProfile(int id, AdminDto.AdminUpdateEmployeeDto adminUpdateEmployeeDto)   // Обновить профиль сотрудника
@@ -225,7 +225,7 @@ public class OnlinePanelAdmin : ControllerBase
         
     }
 
-    [HttpPut("/online_pannel/admin/adresses/{Id}")]
+    [HttpPut("/online_pannel/admin/adresses/{id}")]
     [ProducesResponseType(typeof(ErrorModelDto), 500)]
     [ProducesResponseType(typeof(AdminDto.AdminCreateAdressDto), 200)]
     public async Task<ActionResult<AdminDto.AdminCreateAdressDto>> UpdateStatusAdress(int id, AdminDto.AdminCreateAdressDto adminCreateAdressDto)   // Обновление статуса у адреса
@@ -249,7 +249,7 @@ public class OnlinePanelAdmin : ControllerBase
         
     }
 
-    [HttpGet("/online_pannel/admin_profile/{AdminId}")]
+    [HttpGet("/online_pannel/admin_profile/{id}")]
     [ProducesResponseType(typeof(ErrorModelDto), 500)]
     [ProducesResponseType(typeof(AdminDto.AdminProfileDto), 200)]
     public async Task<ActionResult<AdminDto.AdminProfileDto>> GetAdminDataById(int id)  // Получить данные админа по ID
@@ -273,7 +273,7 @@ public class OnlinePanelAdmin : ControllerBase
         
     }
 
-    [HttpPut("/online_pannel/admin_profile/{AdminId}")]
+    [HttpPut("/online_pannel/admin_profile/{id}")]
     [ProducesResponseType(typeof(ErrorModelDto), 500)]
     [ProducesResponseType(typeof(AdminDto.AdminUpdateProfileDto), 200)]
     public async Task<ActionResult<AdminDto.AdminUpdateProfileDto>> UpdateAdminDataById(int id, AdminDto.AdminUpdateProfileDto adminUpdateProfileDto)   // Обновить данные админа по ID

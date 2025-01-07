@@ -14,11 +14,10 @@ namespace ApiForMgok.Repository
             _context = context;
         }
 
-        public async Task<Address> CreateAddressAsync(Address newaddress)
+        public async Task CreateAddressAsync(Address newaddress)
         {
             _context.Addresses.Add(newaddress);
             await _context.SaveChangesAsync();
-            return newaddress;
         }
 
         public async Task<Employee> CreateEmployeeAsync(Employee newEmployee)
