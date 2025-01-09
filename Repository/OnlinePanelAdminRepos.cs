@@ -53,8 +53,8 @@ namespace ApiForMgok.Repository
         }
 
         public async Task<Request> GetRequestByIdAsync(int id)
-        {
-            return await _context.Requests.FindAsync(id);
+        { 
+            return await _context.Requests.FindAsync(id); ;
         }
 
         public async Task<Address> UpdateAddressAsync(Address address)

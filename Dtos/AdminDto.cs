@@ -1,4 +1,5 @@
 ﻿using ApiForMgok.Models;
+using System.Text.Json.Serialization;
 
 namespace ApiForMgok.Dtos
 {
@@ -40,8 +41,8 @@ namespace ApiForMgok.Dtos
             public string Full_Name { get; set; }
 
             public int? Employee_Id { get; set; }
-
-            public List<Employee> Employee_List  { get; set; } //Список сотрудиков для замены(Будет подключён через Include)
+            
+            public List<EmployeeList> Employee_List  { get; set; } //Список сотрудиков для замены(Будет подключён через Include)
 
         }
 
@@ -175,6 +176,12 @@ namespace ApiForMgok.Dtos
 
             public string Comment { get; set; }
 
+        }
+
+        public class EmployeeList
+        {
+            public int Id { get; set; }
+            public string FullName { get; set; }
         }
 
     }

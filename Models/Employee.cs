@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ApiForMgok.Models;
 
@@ -22,7 +23,7 @@ public partial class Employee
     public bool Status { get; set; }
 
     public int RoleId { get; set; }
-
+    [JsonIgnore]
     public virtual ICollection<Request> Requests { get; set; } = new List<Request>();
 
     public virtual Role Role { get; set; } = null!;

@@ -2,6 +2,7 @@
 using ApiForMgok.Interfaces.Repository;
 using ApiForMgok.Interfaces.Service;
 using ApiForMgok.Models;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ApiForMgok.Services
 {
@@ -140,7 +141,7 @@ namespace ApiForMgok.Services
         {
             var request = await _onlinePanelAdminRepos.GetRequestByIdAsync(id);
 
-            var employees = await _onlinePanelAdminRepos.GetAllEmployeesAsync();
+            var employee = await _onlinePanelAdminRepos.GetAllEmployeesAsync();
 
             if (request == null) return null;
 
@@ -153,7 +154,7 @@ namespace ApiForMgok.Services
                 Created_Date_Time = request.CreatedDateTime,
                 Full_Name = request.FullName,
                 Employee_Id = request.EmployeeId,
-                Employee_List = employees,
+                Employee_List = employee.Select(employee => new AdminDto.EmployeeList { Id = employee.Id, FullName = employee.FullName } ).ToList()
             };
 
         }
