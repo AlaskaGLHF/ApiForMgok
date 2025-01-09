@@ -1,4 +1,6 @@
-﻿namespace ApiForMgok.Dtos
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ApiForMgok.Dtos
 {
     public static class AccountSettings
     {
@@ -8,6 +10,7 @@
 
            public string PhoneNumber { get; set; }
 
+           [EmailAddress]
            public string Email { get; set; }
 
            public string Login { get; set; }
@@ -25,6 +28,7 @@
 
             public string PhoneNumber { get; set; }
 
+            [EmailAddress]
             public string Email { get; set; }
 
             public string Login { get; set; }
