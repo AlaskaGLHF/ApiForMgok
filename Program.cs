@@ -1,3 +1,4 @@
+using Amazon.S3;
 using ApiForMgok.Interfaces;
 using ApiForMgok.Interfaces.Repository;
 using ApiForMgok.Interfaces.Service;
@@ -63,7 +64,8 @@ builder.Services.AddScoped<ITelegramBotRepos, TelegramBotRepos>();
 builder.Services.AddScoped<ITelegramBotService, TelegramBotService>();
 builder.Services.AddScoped<IOnlinePanelUserRepos, OnlinePanelUserRepos>();
 builder.Services.AddScoped<IOnlinePanelUserService, OnlinePanelUserService>();
-
+builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
+builder.Services.AddAWSService<IAmazonS3>();
 builder.Services.AddScoped<IOnlinePanelAdminRepos, OnlinePanelAdminRepos>();
 builder.Services.AddScoped<IOnlinePanelAdminService, OnlinePanelAdminService>();
 builder.Services.AddLogging();
