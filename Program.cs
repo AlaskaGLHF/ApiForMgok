@@ -10,9 +10,13 @@ using Microsoft.Extensions.DependencyInjection;
 using ApiForMgok.Models;
 using ApiForMgok.Services;
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddHttpClient(); 
 
 builder.Services.AddDbContext<ApiForMgokContext>(options =>
     options.UseNpgsql(connectionString));
@@ -68,6 +72,8 @@ builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
 builder.Services.AddAWSService<IAmazonS3>();
 builder.Services.AddScoped<IOnlinePanelAdminRepos, OnlinePanelAdminRepos>();
 builder.Services.AddScoped<IOnlinePanelAdminService, OnlinePanelAdminService>();
+builder.Services.AddScoped<IS3Service, S3Service>();
+
 builder.Services.AddLogging();
 
 var app = builder.Build();

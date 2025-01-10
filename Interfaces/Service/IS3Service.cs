@@ -1,11 +1,17 @@
-﻿using ApiForMgok.Dtos;
-using ApiForMgok.Services;
+﻿using System.IO;
+using System.Threading.Tasks;
 
-namespace ApiForMgok.Interfaces.Service;
-
-public interface IS3Service
+namespace ApiForMgok.Interfaces.Service
 {
-    
-    public Task<S3ObjectDto> S3Service (IConfiguration configuration, ILogger<S3Service> logger);
-    
+    public interface IS3Service
+    {
+        
+        Task<string> UploadPhotoFromUrlAsync(string photoUrl, string chatId);
+        
+        Task<string> UploadFileAsync(Stream fileStream, string fileName);
+        
+        Task<Stream> GetFileAsync(string fileName);
+        
+        Task DeleteFileAsync(string fileName);
+    }
 }

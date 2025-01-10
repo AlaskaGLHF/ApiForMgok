@@ -62,5 +62,15 @@ namespace ApiForMgok.Services
                 StatusId = request.StatusId,
             }).ToList();
         }
+        
+        public async Task<Stream> DownloadPhotoAsync(string photoUrl)
+        {
+            using var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(photoUrl);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStreamAsync();
+        }
+
+        
     }
 }

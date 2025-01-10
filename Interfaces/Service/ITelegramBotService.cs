@@ -10,5 +10,7 @@ namespace ApiForMgok.Interfaces.Service
 
         public Task<List<TelegramBotDto.TelegramBotResponseDto>> GetRequestAsync(int chatId);
 
+        public Task<Stream> DownloadPhotoAsync(string photoUrl);
+
     }
 }

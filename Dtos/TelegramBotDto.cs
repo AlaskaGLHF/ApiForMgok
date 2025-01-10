@@ -1,4 +1,6 @@
-﻿namespace ApiForMgok.Dtos
+﻿using System.Text.Json.Serialization;
+
+namespace ApiForMgok.Dtos
 {
     public static class TelegramBotDto
     {
@@ -19,7 +21,7 @@
             public string Description { get; set; }
 
             public string Photo { get; set; }
-
+            
         }
 
         public class TelegramBotResponseDto
